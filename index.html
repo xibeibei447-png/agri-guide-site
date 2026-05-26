@@ -15,21 +15,19 @@
       <nav class="nav" aria-label="页面导航">
         <a href="#problems">常见问题</a>
         <a href="#solution">药剂方向</a>
-        <a href="#crops">作物索引</a>
       </nav>
     </header>
 
     <main>
       <section class="hero" id="home">
         <div class="hero-copy">
-          <p class="eyebrow">问题先行 · 药剂参考 · 标签为准</p>
-          <h1>先找到田里的问题，再查看可参考的防治方向。</h1>
+          <h1>田间问题怎么处理？</h1>
           <p class="hero-text">
-            面向小麦、水稻、玉米等粮食作物，把倒伏、发黄、病斑、虫害、草害等常见情况整理成易查询的农技展示页面。
+            选择和田里相似的问题图片，查看常见原因、处理方法和可参考的药剂成分。
           </p>
           <div class="hero-actions">
             <a class="button primary" href="#problems">查看问题</a>
-            <a class="button ghost" href="#solution">看药剂示例</a>
+            <a class="button ghost" href="#solution">看处理方法</a>
           </div>
         </div>
         <div class="hero-media" aria-label="粮食作物田间场景"></div>
@@ -46,16 +44,16 @@
         <div class="section-heading">
           <p class="eyebrow">Step 1</p>
           <h2>先选择田间问题</h2>
-          <p>点击一个问题，页面会跳转到对应的常见原因、处理思路和参考药剂成分。</p>
+          <p>左右滑动查看不同问题图片，点击图片卡片后会跳转到对应的常见原因、处理思路和参考药剂成分。</p>
         </div>
-        <div class="problem-grid" id="problemGrid"></div>
+        <div class="problem-carousel" aria-label="田间问题图片">
+          <button class="carousel-control prev" type="button" id="prevProblem" aria-label="向左滑动">‹</button>
+          <div class="problem-track" id="problemGrid"></div>
+          <button class="carousel-control next" type="button" id="nextProblem" aria-label="向右滑动">›</button>
+        </div>
       </section>
 
       <section class="solution-section" id="solution">
-        <aside class="solution-list" aria-label="问题快捷列表">
-          <h2>问题列表</h2>
-          <div id="solutionNav"></div>
-        </aside>
         <article class="solution-panel" aria-live="polite">
           <div class="solution-visual">
             <img id="selectedImage" src="images/1-倒伏.jpg" alt="倒伏、茎秆弱的田间照片" />
@@ -86,30 +84,6 @@
         </article>
       </section>
 
-      <section class="section crops" id="crops">
-        <div class="section-heading">
-          <p class="eyebrow">Crop index</p>
-          <h2>主要粮食作物索引</h2>
-        </div>
-        <div class="crop-grid">
-          <article>
-            <span>小麦</span>
-            <p>重点关注赤霉病、锈病、白粉病、蚜虫、禾本科杂草和倒伏风险。</p>
-          </article>
-          <article>
-            <span>水稻</span>
-            <p>重点关注稻瘟病、纹枯病、稻飞虱、稻纵卷叶螟、稗草和千金子。</p>
-          </article>
-          <article>
-            <span>玉米</span>
-            <p>重点关注草地贪夜蛾、玉米螟、大小斑病、苗后草害和风雨倒伏。</p>
-          </article>
-          <article>
-            <span>大豆</span>
-            <p>重点关注食心虫、蚜虫、叶斑病、根腐病以及苗期阔叶和禾本科杂草。</p>
-          </article>
-        </div>
-      </section>
     </main>
 
     <footer class="footer">

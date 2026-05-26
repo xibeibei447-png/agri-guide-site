@@ -119,8 +119,168 @@ const problems = [
   },
 ];
 
+const chemicalDetails = {
+  多效唑: {
+    effect: "抑制徒长，缩短节间，帮助茎秆更结实，主要用于前期控旺防倒。",
+    method: "适合在作物旺长、倒伏风险出现前使用，已倒伏后作用有限；具体时期和用量必须按标签执行。",
+    value: "性价比较高",
+    caution: "过量容易抑制生长，苗弱、干旱或低温时要谨慎。",
+  },
+  矮壮素: {
+    effect: "控制营养生长，促进植株矮壮，常用于小麦等作物防倒伏。",
+    method: "一般用于拔节前后控旺，需结合苗情、密度和肥水情况判断。",
+    value: "性价比较高",
+    caution: "弱苗、受冻苗、干旱田不宜盲目使用。",
+  },
+  烯效唑: {
+    effect: "控旺能力较强，可缩短节间、提高抗倒能力。",
+    method: "适合旺长田块前期调控，按登记作物和推荐剂量使用。",
+    value: "中等成本",
+    caution: "调节剂类都怕过量，宁可先做小面积试用。",
+  },
+  芸苔素内酯: {
+    effect: "缓解逆境、促进恢复长势，常用于低温、药害、弱苗后的调节。",
+    method: "多与叶面肥配合使用，作为恢复和辅助调节，不是直接杀虫杀菌药。",
+    value: "中等成本",
+    caution: "不能替代杀菌剂、杀虫剂或防倒措施。",
+  },
+  氨基酸叶面肥: {
+    effect: "补充营养，帮助弱苗恢复，提高叶片活力。",
+    method: "适合发黄、弱苗、根系吸收差时作叶面补充，注意避开高温强光。",
+    value: "性价比较高",
+    caution: "如果根部积水或病虫害未解决，单喷叶面肥效果有限。",
+  },
+  噻呋酰胺: {
+    effect: "偏向防治纹枯病、茎基部病害等真菌性病害。",
+    method: "发现基部病害或纹枯病趋势时使用，喷施要尽量覆盖病部附近。",
+    value: "中等成本",
+    caution: "必须核对登记作物和病害对象。",
+  },
+  吡虫啉: {
+    effect: "防治蚜虫、飞虱等刺吸式害虫，兼具内吸传导特点。",
+    method: "虫口达到防治指标时使用，重点喷到害虫聚集部位。",
+    value: "性价比较高",
+    caution: "部分地区抗性较明显，花期注意对授粉昆虫风险。",
+  },
+  戊唑醇: {
+    effect: "三唑类杀菌剂，对锈病、白粉病、纹枯病等方向常见。",
+    method: "适合发病初期或预防性使用，重病田需结合复配和间隔再防。",
+    value: "性价比较高",
+    caution: "连续使用同类三唑药易增加抗性风险。",
+  },
+  苯醚甲环唑: {
+    effect: "内吸性杀菌剂，对多种叶部病害有保护和治疗作用。",
+    method: "病斑初现时效果较好，可与不同机理药剂轮换。",
+    value: "中等成本",
+    caution: "不要把一种杀菌剂套用到所有病害。",
+  },
+  吡唑醚菌酯: {
+    effect: "保护性和治疗性兼有，常用于叶部病害复配方案。",
+    method: "适合病害初期或高发前使用，喷雾要均匀覆盖叶片。",
+    value: "成本偏高但效果稳定",
+    caution: "避免长期单独连续使用。",
+  },
+  三环唑: {
+    effect: "水稻稻瘟病方向经典成分，偏预防和早期控制。",
+    method: "适合稻瘟病发生风险高或初发阶段使用。",
+    value: "性价比较高",
+    caution: "重病后单用补救能力有限。",
+  },
+  井冈霉素: {
+    effect: "水稻纹枯病方向常见，偏保护和控制扩展。",
+    method: "纹枯病发生初期使用，注意喷到稻株中下部。",
+    value: "性价比较高",
+    caution: "病情重时需要结合其他管理措施。",
+  },
+  氯虫苯甲酰胺: {
+    effect: "对螟虫、卷叶螟、草地贪夜蛾等鳞翅目害虫效果较稳。",
+    method: "低龄幼虫期使用更合适，钻蛀进入茎秆后难度增加。",
+    value: "成本偏高但持效较好",
+    caution: "注意轮换作用机理，避免抗性上升。",
+  },
+  甲维盐: {
+    effect: "对多种鳞翅目幼虫有效，速效性较好。",
+    method: "适合低龄幼虫期喷施，可与其他成分复配增强持效。",
+    value: "性价比较高",
+    caution: "高温强光下使用要注意安全性和药效稳定。",
+  },
+  茚虫威: {
+    effect: "对夜蛾、粘虫、卷叶螟等咀嚼式害虫常见。",
+    method: "虫龄较小时防治效果更好，喷雾覆盖虫体活动区域。",
+    value: "中等成本",
+    caution: "与同类杀虫剂轮换使用。",
+  },
+  高效氯氟氰菊酯: {
+    effect: "触杀速效强，适合快速压低部分害虫数量。",
+    method: "虫量高时可作快速处理，但持效和抗性要考虑。",
+    value: "价格较低",
+    caution: "对天敌影响较大，不建议频繁使用。",
+  },
+  啶虫脒: {
+    effect: "防治蚜虫、蓟马、飞虱等刺吸式害虫。",
+    method: "虫量上升初期使用，喷到叶背和虫体聚集处。",
+    value: "性价比较高",
+    caution: "与吡虫啉等同类药剂注意轮换。",
+  },
+  吡蚜酮: {
+    effect: "稻飞虱、蚜虫方向常见，对刺吸式害虫有较好针对性。",
+    method: "水稻飞虱要重点喷到植株基部和下部。",
+    value: "中等成本",
+    caution: "不同地区抗性差异较大。",
+  },
+  烯啶虫胺: {
+    effect: "对飞虱、蚜虫等刺吸式害虫有较快控制作用。",
+    method: "适合虫口上升期使用，可与不同机理药剂轮换。",
+    value: "中等成本",
+    caution: "注意安全间隔期和授粉昆虫风险。",
+  },
+  呋虫胺: {
+    effect: "新烟碱类杀虫剂，对飞虱等刺吸式害虫常见。",
+    method: "按虫情和标签使用，注意喷雾均匀。",
+    value: "中等成本",
+    caution: "避免与同类药剂长期连续使用。",
+  },
+  炔草酯: {
+    effect: "小麦田部分禾本科杂草方向常见。",
+    method: "看准小麦苗龄、杂草草龄和温度条件后使用。",
+    value: "性价比较高",
+    caution: "除草剂药害风险高，必须核对标签。",
+  },
+  双氟磺草胺: {
+    effect: "小麦田阔叶杂草方向常见。",
+    method: "适合阔叶草较小时使用，注意与禾本科杂草药区分。",
+    value: "性价比较高",
+    caution: "低温、弱苗、重叠喷施都可能增加药害。",
+  },
+  氰氟草酯: {
+    effect: "水稻田千金子等禾本科杂草方向常见。",
+    method: "按草龄和水层管理使用，喷后田间管理会影响效果。",
+    value: "中等成本",
+    caution: "水稻除草剂不能直接套到其他作物。",
+  },
+  五氟磺草胺: {
+    effect: "水稻田稗草等杂草方向常见。",
+    method: "适合水稻田苗后除草，需结合杂草种类选择。",
+    value: "中等成本",
+    caution: "抗性稗草地区效果可能下降。",
+  },
+  烟嘧磺隆: {
+    effect: "玉米苗后杂草方向常见。",
+    method: "严格按玉米叶龄、品种和温度使用。",
+    value: "性价比较高",
+    caution: "甜玉米、糯玉米或敏感品种要特别谨慎。",
+  },
+  硝磺草酮: {
+    effect: "玉米苗后阔叶及部分禾本科杂草方向常见。",
+    method: "适合玉米苗后杂草较小时使用，常见于复配方案。",
+    value: "中等成本",
+    caution: "注意后茬作物和低温药害风险。",
+  },
+};
+
 const problemGrid = document.querySelector("#problemGrid");
-const solutionNav = document.querySelector("#solutionNav");
+const prevProblem = document.querySelector("#prevProblem");
+const nextProblem = document.querySelector("#nextProblem");
 const selectedCrop = document.querySelector("#selectedCrop");
 const selectedImage = document.querySelector("#selectedImage");
 const selectedTitle = document.querySelector("#selectedTitle");
@@ -154,9 +314,26 @@ function selectProblem(id, shouldScroll = true) {
 
   chemicalList.innerHTML = "";
   problem.chemicals.forEach(([name, description]) => {
+    const detail = chemicalDetails[name] || {
+      effect: description,
+      method: "按产品标签、登记作物和当地植保建议使用。",
+      value: "视产品而定",
+      caution: "使用前核对标签和安全间隔期。",
+    };
     const card = document.createElement("article");
     card.className = "chemical";
-    card.innerHTML = `<strong>${name}</strong><span>${description}</span>`;
+    card.innerHTML = `
+      <div class="chemical-head">
+        <strong>${name}</strong>
+        <span>${detail.value}</span>
+      </div>
+      <p class="chemical-summary">${description}</p>
+      <dl class="chemical-detail">
+        <div><dt>功效</dt><dd>${detail.effect}</dd></div>
+        <div><dt>用法</dt><dd>${detail.method}</dd></div>
+        <div><dt>注意</dt><dd>${detail.caution}</dd></div>
+      </dl>
+    `;
     chemicalList.appendChild(card);
   });
 
@@ -186,14 +363,18 @@ problems.forEach((problem) => {
   `;
   card.addEventListener("click", () => selectProblem(problem.id));
   problemGrid.appendChild(card);
-
-  const tab = document.createElement("button");
-  tab.className = "solution-tab";
-  tab.type = "button";
-  tab.dataset.problem = problem.id;
-  tab.textContent = problem.title;
-  tab.addEventListener("click", () => selectProblem(problem.id, false));
-  solutionNav.appendChild(tab);
 });
+
+function slideProblems(direction) {
+  const firstCard = problemGrid.querySelector(".problem-card");
+  const cardWidth = firstCard ? firstCard.getBoundingClientRect().width : 320;
+  problemGrid.scrollBy({
+    left: direction * (cardWidth + 18),
+    behavior: "smooth",
+  });
+}
+
+prevProblem.addEventListener("click", () => slideProblems(-1));
+nextProblem.addEventListener("click", () => slideProblems(1));
 
 selectProblem("lodging", false);
