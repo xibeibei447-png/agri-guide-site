@@ -2,6 +2,7 @@ const problems = [
   {
     id: "lodging",
     icon: "倒",
+    image: "images/problems/lodging.jpg",
     title: "倒伏、茎秆弱",
     crop: "小麦 / 水稻 / 玉米",
     intro:
@@ -20,6 +21,7 @@ const problems = [
   {
     id: "yellowing",
     icon: "黄",
+    image: "images/problems/yellowing.jpg",
     title: "叶片发黄、长势弱",
     crop: "小麦 / 水稻 / 玉米 / 大豆",
     intro:
@@ -38,6 +40,7 @@ const problems = [
   {
     id: "leaf-disease",
     icon: "斑",
+    image: "images/problems/leaf-disease.jpg",
     title: "叶片病斑、锈病、白粉",
     crop: "小麦 / 水稻 / 玉米",
     intro:
@@ -57,6 +60,7 @@ const problems = [
   {
     id: "borer",
     icon: "虫",
+    image: "images/problems/borer.jpg",
     title: "钻心虫、卷叶虫、夜蛾",
     crop: "水稻 / 玉米 / 小麦",
     intro:
@@ -75,6 +79,7 @@ const problems = [
   {
     id: "sap-sucking",
     icon: "吸",
+    image: "images/problems/sap-sucking.jpg",
     title: "蚜虫、飞虱等刺吸式害虫",
     crop: "小麦 / 水稻 / 玉米 / 大豆",
     intro:
@@ -94,6 +99,7 @@ const problems = [
   {
     id: "weeds",
     icon: "草",
+    image: "images/problems/weeds.jpg",
     title: "田间杂草多",
     crop: "小麦 / 水稻 / 玉米",
     intro:
@@ -116,6 +122,7 @@ const problems = [
 const problemGrid = document.querySelector("#problemGrid");
 const solutionNav = document.querySelector("#solutionNav");
 const selectedCrop = document.querySelector("#selectedCrop");
+const selectedImage = document.querySelector("#selectedImage");
 const selectedTitle = document.querySelector("#selectedTitle");
 const selectedIntro = document.querySelector("#selectedIntro");
 const causeList = document.querySelector("#causeList");
@@ -136,6 +143,8 @@ function selectProblem(id, shouldScroll = true) {
   const problem = problems.find((item) => item.id === id) || problems[0];
 
   selectedCrop.textContent = problem.crop;
+  selectedImage.src = problem.image;
+  selectedImage.alt = `${problem.title}的田间照片`;
   selectedTitle.textContent = problem.title;
   selectedIntro.textContent = problem.intro;
 
@@ -166,7 +175,7 @@ problems.forEach((problem) => {
   card.type = "button";
   card.dataset.problem = problem.id;
   card.innerHTML = `
-    <span class="problem-icon">${problem.icon}</span>
+    <span class="problem-photo"><img src="${problem.image}" alt="${problem.title}的田间照片" loading="lazy" /></span>
     <div>
       <h3>${problem.title}</h3>
       <p>${problem.intro}</p>
