@@ -2,7 +2,7 @@ const problems = [
   {
     id: "lodging",
     icon: "倒",
-    image: "images/problems/lodging.jpg",
+    image: "images/1-倒伏.jpg",
     title: "倒伏、茎秆弱",
     crop: "小麦 / 水稻 / 玉米",
     intro:
@@ -21,7 +21,7 @@ const problems = [
   {
     id: "yellowing",
     icon: "黄",
-    image: "images/problems/yellowing.jpg",
+    image: "images/2-发黄.jpg",
     title: "叶片发黄、长势弱",
     crop: "小麦 / 水稻 / 玉米 / 大豆",
     intro:
@@ -40,7 +40,7 @@ const problems = [
   {
     id: "leaf-disease",
     icon: "斑",
-    image: "images/problems/leaf-disease.jpg",
+    image: "images/3-病斑.jpg",
     title: "叶片病斑、锈病、白粉",
     crop: "小麦 / 水稻 / 玉米",
     intro:
@@ -60,7 +60,7 @@ const problems = [
   {
     id: "borer",
     icon: "虫",
-    image: "images/problems/borer.jpg",
+    image: "images/4-钻心虫卷叶虫.jpg",
     title: "钻心虫、卷叶虫、夜蛾",
     crop: "水稻 / 玉米 / 小麦",
     intro:
@@ -79,7 +79,7 @@ const problems = [
   {
     id: "sap-sucking",
     icon: "吸",
-    image: "images/problems/sap-sucking.jpg",
+    image: "images/5-蚜虫飞虱.jpg",
     title: "蚜虫、飞虱等刺吸式害虫",
     crop: "小麦 / 水稻 / 玉米 / 大豆",
     intro:
@@ -99,7 +99,7 @@ const problems = [
   {
     id: "weeds",
     icon: "草",
-    image: "images/problems/weeds.jpg",
+    image: "images/6-杂草.jpg",
     title: "田间杂草多",
     crop: "小麦 / 水稻 / 玉米",
     intro:
