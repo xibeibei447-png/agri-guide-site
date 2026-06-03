@@ -278,13 +278,28 @@ const chemicalDetails = {
   },
 };
 
+const diagnosisGuide = {
+  lodging: ["成片或局部植株倾斜、倒伏，常在大风大雨后明显。", "茎秆细弱、节间过长，或根部支撑力差。", "先看是否密度过大、氮肥偏多，再排查茎基部病害和蛀茎害虫。"],
+  yellowing: ["先看发黄是成片、条带状，还是零星发生。", "老叶先黄多与缺氮、根系差有关，新叶发黄要考虑缺素或药害。", "伴随卷叶、虫体、病斑时，应转向病虫害判断。"],
+  "leaf-disease": ["叶片出现斑点、粉层、锈色孢子或病斑扩大。", "高湿、连阴雨、密度大时更容易发生。", "先判断是锈病、白粉病、稻瘟病还是叶斑类病害，再选药。"],
+  borer: ["叶片被咬出缺刻、卷叶，或心叶受害、茎秆被蛀。", "剥开受害部位可能见幼虫或虫粪。", "低龄幼虫期更容易防治，钻入茎秆后效果会下降。"],
+  "sap-sucking": ["叶背、茎基部或穗部可见蚜虫、飞虱等小虫聚集。", "植株可能发黄、卷叶、煤污，水稻严重时可能冒穿。", "重点看虫量和分布位置，不要只看叶色下药。"],
+  weeds: ["田间杂草与作物争光争肥，苗小草大时危害明显。", "先分清禾本科、阔叶草、莎草，再看作物和杂草生育期。", "除草剂最容易出药害，必须先核对作物、品种、苗龄和天气。"],
+};
+
+let activeCrop = "全部";
+let activeSearch = "";
+
 const problemGrid = document.querySelector("#problemGrid");
 const prevProblem = document.querySelector("#prevProblem");
 const nextProblem = document.querySelector("#nextProblem");
+const cropFilter = document.querySelector("#cropFilter");
+const problemSearch = document.querySelector("#problemSearch");
 const selectedCrop = document.querySelector("#selectedCrop");
 const selectedImage = document.querySelector("#selectedImage");
 const selectedTitle = document.querySelector("#selectedTitle");
 const selectedIntro = document.querySelector("#selectedIntro");
+const diagnosisList = document.querySelector("#diagnosisList");
 const causeList = document.querySelector("#causeList");
 const actionList = document.querySelector("#actionList");
 const chemicalList = document.querySelector("#chemicalList");
@@ -308,6 +323,7 @@ function selectProblem(id, shouldScroll = true) {
   selectedTitle.textContent = problem.title;
   selectedIntro.textContent = problem.intro;
 
+  createListItems(diagnosisGuide[problem.id] || ["先观察发生部位、发生范围、天气和近期用肥用药情况。"], diagnosisList);
   createListItems(problem.causes, causeList);
   createListItems(problem.actions, actionList);
   createListItems(problem.warnings, warningList);
@@ -346,7 +362,37 @@ function selectProblem(id, shouldScroll = true) {
   }
 }
 
-problems.forEach((problem) => {
+function getProblemCrops(problem) {
+  return problem.crop.split("/").map((item) => item.trim());
+}
+
+function matchesFilters(problem) {
+  const cropMatch = activeCrop === "全部" || getProblemCrops(problem).includes(activeCrop);
+  const searchText = [
+    problem.title,
+    problem.crop,
+    problem.intro,
+    ...problem.tags,
+    ...problem.causes,
+    ...problem.actions,
+    ...problem.warnings,
+    ...problem.chemicals.flat(),
+  ]
+    .join(" ")
+    .toLowerCase();
+  return cropMatch && searchText.includes(activeSearch);
+}
+
+function renderProblems() {
+  const visibleProblems = problems.filter(matchesFilters);
+  problemGrid.innerHTML = "";
+
+  if (visibleProblems.length === 0) {
+    problemGrid.innerHTML = `<div class="empty-state">没有找到对应内容，可以换个关键词，或先选择“全部”。</div>`;
+    return;
+  }
+
+  visibleProblems.forEach((problem) => {
   const card = document.createElement("button");
   card.className = "problem-card";
   card.type = "button";
@@ -363,6 +409,24 @@ problems.forEach((problem) => {
   `;
   card.addEventListener("click", () => selectProblem(problem.id));
   problemGrid.appendChild(card);
+  });
+
+  selectProblem(visibleProblems[0].id, false);
+}
+
+cropFilter.addEventListener("click", (event) => {
+  const button = event.target.closest("[data-crop]");
+  if (!button) return;
+  activeCrop = button.dataset.crop;
+  cropFilter.querySelectorAll("[data-crop]").forEach((item) => {
+    item.classList.toggle("active", item === button);
+  });
+  renderProblems();
+});
+
+problemSearch.addEventListener("input", () => {
+  activeSearch = problemSearch.value.trim().toLowerCase();
+  renderProblems();
 });
 
 function slideProblems(direction) {
@@ -377,4 +441,4 @@ function slideProblems(direction) {
 prevProblem.addEventListener("click", () => slideProblems(-1));
 nextProblem.addEventListener("click", () => slideProblems(1));
 
-selectProblem("lodging", false);
+renderProblems();
