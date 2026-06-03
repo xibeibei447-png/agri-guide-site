@@ -339,16 +339,27 @@ function selectProblem(id, shouldScroll = true) {
     const card = document.createElement("article");
     card.className = "chemical";
     card.innerHTML = `
-      <div class="chemical-head">
-        <strong>${name}</strong>
-        <span>${detail.value}</span>
+      <div class="chemical-top">
+        <div>
+          <strong>${name}</strong>
+          <p>${description}</p>
+        </div>
+        <span class="cost-badge">${detail.value}</span>
       </div>
-      <p class="chemical-summary">${description}</p>
-      <dl class="chemical-detail">
-        <div><dt>功效</dt><dd>${detail.effect}</dd></div>
-        <div><dt>用法</dt><dd>${detail.method}</dd></div>
-        <div><dt>注意</dt><dd>${detail.caution}</dd></div>
-      </dl>
+      <div class="chemical-info">
+        <section>
+          <span>主要作用</span>
+          <p>${detail.effect}</p>
+        </section>
+        <section>
+          <span>使用时机</span>
+          <p>${detail.method}</p>
+        </section>
+        <section class="risk">
+          <span>风险提醒</span>
+          <p>${detail.caution}</p>
+        </section>
+      </div>
     `;
     chemicalList.appendChild(card);
   });
